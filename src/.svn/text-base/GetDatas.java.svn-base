@@ -1,0 +1,81 @@
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+/** 
+ *
+ * @Description: 用一句话描述该文件做什么
+ * @author zhudongyang
+ * @date 2015-10-21 
+ * @version V1.0
+ */
+
+/**
+ * 
+ * @Description: 这里用一句话描述这个类的作用
+ * @author zhudongyang
+ * @date 2015-10-21
+ * @version 1.0
+ */
+public class GetDatas {
+	public static String SendGET() {
+		String result = "";// 访问返回结果
+		BufferedReader read = null;// 读取访问结果
+		try{
+			// 创建url
+			String params = "[{\"sql\":\"select * from product where manager_id in (2308,2813,4340,4827,5342,5343,7260) limit 100\"}]";
+			byte[] postData = params.getBytes("UTF-8");
+			String file_string = "";
+			for (int i = 0; i < postData.length; i++) {
+				file_string += (char) postData[i];
+			}
+			System.out.println(file_string);
+
+			int postDataLength = postData.length;
+			String request = "http://private-api.nj.prd.tuniu.org/manage/product/excuteSql";
+			URL realurl = new URL(request);
+			// 打开连接
+		
+			HttpURLConnection conn = (HttpURLConnection) realurl.openConnection();
+			// 设置通用的请求属性
+			conn.setDoOutput( true );
+			conn.setInstanceFollowRedirects( false );
+			conn.setRequestMethod( "POST" );
+			conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded"); 
+			conn.setRequestProperty( "charset", "utf-8");
+			conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
+			conn.setUseCaches( false );
+			conn.connect();
+			DataOutputStream  wr = new DataOutputStream(conn.getOutputStream());
+			byte[] postData2 = new byte[2048];
+			wr.write(postData2);
+			String file_string2 = "";
+			for (int i = 0; i < postData.length; i++) {
+				file_string += (char) postData2[i];
+			}
+			System.out.println(file_string2);
+//			 String line;//循环读取
+//	         while ((line = postData.readLine()) != null) {
+//	             result += line;
+//	         }
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			if (read != null) {// 关闭流
+				try {
+					read.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+	public static void main(String[] args) {
+		String result = SendGET();
+		System.out.println(result);
+	}
+}

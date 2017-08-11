@@ -1,0 +1,33 @@
+package com.tuniu.localRest;
+
+import static com.tuniu.util.OutFomart.*;
+import static com.tuniu.util.PropertiesLoadUtil.*;
+
+import java.util.Map;
+
+import com.tuniu.util.ExcelHelperUitl;
+import com.tuniu.util.PropertiesLoadUtil;
+
+/**
+ *
+ * @Description: 程序入口
+ * @author zhudongyang 
+ * @date 2015-10-22 
+ * @version 1.0
+ */
+public class LocalMain {
+	public static void main(String[] args) {
+		Map<String, String> paramsMap = PropertiesLoadUtil.ReaderFile();
+		ResponseVo responseVo = null;
+		if("get".equals(paramsMap.get("method"))){
+			responseVo = HttpURLConUtil.sendGet(paramsMap);
+		} else if("post".equals(paramsMap.get("method"))){
+			responseVo = HttpURLConUtil.sendPost(paramsMap);
+		} else {
+			writeToLogFile(EXCEPTION,"无法识别请求方式");
+		}
+		if(null != responseVo){
+			ExcelHelperUitl.jsonToExcel(responseVo.getData());
+		}
+	}
+}

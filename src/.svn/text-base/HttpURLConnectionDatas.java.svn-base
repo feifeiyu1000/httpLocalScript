@@ -1,0 +1,193 @@
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+
+import org.apache.commons.codec.binary.Base64;
+import org.json.JSONObject;
+
+public class HttpURLConnectionDatas {
+
+	private final String USER_AGENT_BROWSER = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+	public static void main(String[] args) throws Exception {
+
+		HttpURLConnectionDatas http = new HttpURLConnectionDatas();
+//		System.out.println("Testing 1 - Send Http GET request");
+//		http.sendGet();
+//		
+//		System.out.println("\nTesting 2 - Send Http POST request");
+//		http.sendPost();
+		//get test
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		params.put("Action", "http://private-api.nj.prd.tuniu.org/manage/product/excuteSql");
+//		params.put("Base64Coding", "Y");
+//		params.put("sql", "select * from product where manager_id in (2308,2813,4340,4827,5342,5343,7260) limit 100");
+//		String result = http.sendGet(params);
+//		System.out.println(result);
+		//post test
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("Action", "http://private-api.nj.prd.tuniu.org/manage/product/excuteSql");
+		params.put("Base64Coding", "Y");
+		params.put("sql", "select * from product where manager_id in (2308,2813,4340,4827,5342,5343,7260) limit 100");
+		String result = http.sendPost(params);
+		System.out.println(result);
+	}
+
+	/**
+	 * 
+	 *
+	 * @Description: Get调用
+	 * @param @param params[action,params,characterCoding]
+	 * @param @throws Exception    设定文件 
+	 * @return void    返回类型
+	 * @throws
+	 */
+	private String sendGet(Map<String, Object> params){
+		URL obj = null;
+		HttpURLConnection con = null;
+		StringBuffer response = null;
+		BufferedReader in = null;
+		String result = null;
+		String url = params.get("Action").toString();
+		String characterCoding = params.get("Base64Coding").toString();
+		params.remove("Action");
+		params.remove("Base64Coding");
+        JSONObject jsonObj = new JSONObject(params);
+        String getParams = jsonObj.toString();
+        //base64编码
+        if(isBase64Coding(characterCoding)){
+        	byte[] encodeBytes = Base64.encodeBase64(getParams.getBytes());
+        	getParams = new String(encodeBytes);
+        }
+		try {
+			obj = new URL(url+"?"+ getParams);
+			con = (HttpURLConnection) obj.openConnection();
+			con.setRequestMethod("GET");
+			con.setRequestProperty("User-Agent", USER_AGENT_BROWSER);
+			int responseCode = con.getResponseCode();
+			//2xx response success
+			if(Pattern.matches("^2[0-9][0-9]", String.valueOf(responseCode))){
+				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				String inputLine;
+				response = new StringBuffer();
+				while ((inputLine = in.readLine()) != null) {
+					response.append(inputLine);
+				}
+			} 
+			result = response.toString();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (ProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(null != in){
+					in.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(null != response && isBase64Coding(characterCoding)){
+			byte[] decodedBytes = Base64.decodeBase64(response.toString().getBytes());
+			result = new String(decodedBytes);
+		}
+		return result;
+	}
+	
+	/**
+	 * 
+	 *
+	 * @Description: Post调用
+	 * @param @param params    设定文件 
+	 * @return void    返回类型
+	 * @throws
+	 */
+	private String sendPost(Map<String, Object> params){
+		URL obj = null;
+		HttpURLConnection con = null;
+		StringBuffer response = null;
+		BufferedReader in = null;
+		String result = null;
+		String url = params.get("Action").toString();
+		String characterCoding = params.get("Base64Coding").toString();
+		params.remove("Action");
+		params.remove("Base64Coding");
+		JSONObject jsonObj = new JSONObject(params);
+        String postParams = jsonObj.toString();
+		try {
+			obj = new URL(url);
+			con = (HttpURLConnection) obj.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("User-Agent", USER_AGENT_BROWSER);
+			con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+			con.setDoOutput(true);
+			DataOutputStream wr = null;
+			wr = new DataOutputStream(con.getOutputStream());
+			//base64编码
+			if(isBase64Coding(characterCoding)){
+				byte[] encodeBytes = Base64.encodeBase64(postParams.getBytes());
+				postParams = new String(encodeBytes);
+			}
+			wr.writeBytes(postParams);
+			wr.flush();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+			wr.close();
+			int responseCode = con.getResponseCode();
+			//2xx response success
+			if(Pattern.matches("^2[0-9][0-9]", String.valueOf(responseCode))){
+				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				String inputLine;
+				response = new StringBuffer();
+				while ((inputLine = in.readLine()) != null) {
+					response.append(inputLine);
+				}
+			}
+			result = response.toString();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}  catch (ProtocolException e) {
+			e.printStackTrace();
+		}	catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(null != in){
+					in.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(null != response && isBase64Coding(characterCoding)){
+			byte[] decodedBytes = Base64.decodeBase64(response.toString().getBytes());
+			result = new String(decodedBytes);
+		}
+		return result;
+	}
+	/**
+	 *
+	 * @Description: 是否是base64编码
+	 * @param @param params
+	 * @param @return    设定文件 
+	 * @return boolean    返回类型
+	 * @throws 
+	 */
+	 
+	private boolean isBase64Coding(String str) {
+		if(str.equalsIgnoreCase("Y")){
+			return true;
+		}
+		return false;
+	}
+}

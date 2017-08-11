@@ -1,0 +1,40 @@
+import java.lang.reflect.Field;
+
+
+/** 
+ *
+ * @Description: 用一句话描述该文件做什么
+ * @author zhudongyang
+ * @date 2015-10-17 
+ * @version V1.0
+ */
+
+/**
+ *
+ * @Description: 这里用一句话描述这个类的作用
+ * @author zhudongyang 
+ * @date 2015-10-17 
+ * @version 1.0
+ */
+public class TestCode {
+	 int x;
+	    int y;  
+
+	    public void getClassName(){
+	        String className = this.getClass().getSimpleName(); 
+	        System.out.println("Name:"+TestCode.this.getClass().getName());
+	    }
+
+	    public void getAttributes(){
+	        Field[] Attributes = this.getClass().getDeclaredFields();   
+	        for(int i=0;i<Attributes.length;i++){
+	            System.out.println("Declared Fields"+Attributes[i]);    
+	        }
+
+	    }
+	    public static void main(String args[]){
+//
+//	    	B b = new B(new TestCode());
+//	    	b.getClassName();
+	    }
+}
