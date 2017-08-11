@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  *
  * @Description: 这里用一句话描述这个类的作用
- * @author zhudongyang 
+ * @author zdy 
  * @date 2015-10-28 
  * @version 1.0
  */

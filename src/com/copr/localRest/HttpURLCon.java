@@ -1,4 +1,4 @@
-package com.tuniu.localRest;
+package com.copr.localRest;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -13,16 +13,16 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.tuniu.localRest.ResponseVo;
-import com.tuniu.util.JsonUtil;
+import com.copr.localRest.ResponseVo;
+import com.copr.util.JsonUtil;
 
-import static com.tuniu.util.ConstantHelper.USER_AGENT_BROWSER;
-import static com.tuniu.util.OutFomart.EXCEPTION;
-import static com.tuniu.util.PropertiesLoadUtil.writeToLogFile;
+import static com.copr.util.ConstantHelper.USER_AGENT_BROWSER;
+import static com.copr.util.OutFomart.EXCEPTION;
+import static com.copr.util.PropertiesLoadUtil.writeToLogFile;
 /**
  *
  * @Description: URL连接辅助类
- * @author zhudongyang 
+ * @author zdy 
  * @date 2015-10-22 
  * @version 1.0
  */

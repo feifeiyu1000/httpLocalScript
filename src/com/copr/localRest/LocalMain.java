@@ -1,21 +1,21 @@
-package com.tuniu.localRest;
+package com.copr.localRest;
 
-import static com.tuniu.util.OutFomart.EXCEPTION;
-import static com.tuniu.util.PropertiesLoadUtil.writeToLogFile;
+import static com.copr.util.OutFomart.EXCEPTION;
+import static com.copr.util.PropertiesLoadUtil.writeToLogFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.tuniu.util.ExcelHelperUitl;
-import com.tuniu.util.JsonUtil;
-import com.tuniu.util.PropertiesLoadUtil;
+import com.copr.util.ExcelHelperUitl;
+import com.copr.util.JsonUtil;
+import com.copr.util.PropertiesLoadUtil;
 
 /**
  *
  * @Description: 程序入口
- * @author zhudongyang 
+ * @author zdy 
  * @date 2015-10-22 
  * @version 1.0
  */

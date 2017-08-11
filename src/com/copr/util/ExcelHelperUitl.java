@@ -1,7 +1,7 @@
-package com.tuniu.util;
+package com.copr.util;
 
-import static com.tuniu.util.OutFomart.EXCEPTION;
-import static com.tuniu.util.PropertiesLoadUtil.writeToLogFile;
+import static com.copr.util.OutFomart.EXCEPTION;
+import static com.copr.util.PropertiesLoadUtil.writeToLogFile;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  *
  * @Description: Excel辅助类
- * @author zhudongyang 
+ * @author zdy 
  * @date 2015-10-22 
  * @version 1.0
  */

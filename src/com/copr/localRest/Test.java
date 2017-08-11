@@ -1,9 +1,9 @@
-package com.tuniu.localRest;
+package com.copr.localRest;
 
 /**
  *
  * @Description: 这里用一句话描述这个类的作用
- * @author zhudongyang 
+ * @author zdy 
  * @date 2015-12-3 
  * @version 1.0
  */

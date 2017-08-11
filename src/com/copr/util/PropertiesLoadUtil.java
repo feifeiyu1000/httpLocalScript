@@ -1,6 +1,6 @@
-package com.tuniu.util;
+package com.copr.util;
 
-import static com.tuniu.util.OutFomart.*;
+import static com.copr.util.OutFomart.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,11 +14,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import static com.tuniu.util.ConstantHelper.*;
+import static com.copr.util.ConstantHelper.*;
 /**
  *
  * @Description: 读取初始化参数
- * @author zhudongyang 
+ * @author zdy 
  * @date 2015-10-23 
  * @version 1.0
  */

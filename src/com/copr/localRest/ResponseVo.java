@@ -1,5 +1,5 @@
 
-package com.tuniu.localRest;
+package com.copr.localRest;
 
 
 /**
@@ -75,7 +75,7 @@ public class ResponseVo {
         this.data = data;
     }
     
-/*  http://bug.tuniu.org/issues/26368
+/*  http://bug.copr.org/issues/26368
  * 代码里设置数组时没提供统一方法来实现这个约束，每个人自己写自己的,导致不统一
  */
    /* public <T> void setData(List<T> dataList) {

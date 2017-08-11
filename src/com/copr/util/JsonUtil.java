@@ -1,12 +1,12 @@
 /**
  * 项目名：product
- * 包名：com.tuniu.phoenix.product.util    
+ * 包名：com.copr.phoenix.product.util    
  * 文件名：JsonUtil.java *
  * 日期：2012-5-17 上午11:57:45
  * Copyright 途牛科技有限公司 2012
  * 版权所有
  */
-package com.tuniu.util;
+package com.copr.util;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -18,7 +18,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tuniu.operation.platform.base.json.JsonFormatter;
+import com.copr.operation.platform.base.json.JsonFormatter;
 
 
 /**
