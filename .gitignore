@@ -1,0 +1,14 @@
+.DS_Store
+
+node_modules
+coverage
+.idea
+.metadata
+.settings
+.svn
+bin
+.classpath
+.fatjar
+.project
+*.iml
+*.jar

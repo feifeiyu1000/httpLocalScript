@@ -18,7 +18,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.copr.operation.platform.base.json.JsonFormatter;
+import com.tuniu.operation.platform.base.json.JsonFormatter;
 
 
 /**
